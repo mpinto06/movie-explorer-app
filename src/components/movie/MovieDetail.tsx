@@ -101,7 +101,7 @@ export const MovieDetail: React.FC<MovieDetailProps> = ({ imdbID, onClose }) => 
                   <div className={styles.noPosterDetail}>Imagen no disponible</div>
                 )}
                 <div className={styles.movieDetailRatings}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <div className={styles.ratingHeader}>
                     <Star className={styles.starIcon} size={20} />
                     <span className={styles.ratingValue}>{movie.imdbRating}</span>
                     <span className={styles.ratingMax}>/10</span>
@@ -170,7 +170,7 @@ export const MovieDetail: React.FC<MovieDetailProps> = ({ imdbID, onClose }) => 
                   <p className={styles.sectionContent}>{movie.Actors}</p>
                 </div>
 
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginTop: 'auto' }}>
+                <div className={styles.movieDetailActions}>
                   <Button className={styles.imdbButton} onClick={() => window.open(`https://www.imdb.com/title/${movie.imdbID}`, '_blank')}>
                     <ExternalLink size={18} className="mr-2" />
                     Ver en IMDb

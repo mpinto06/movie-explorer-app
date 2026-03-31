@@ -148,6 +148,12 @@
   border-radius: 100px;
 }
 
+.ratingHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .ratingValue {
   font-size: 1.25rem;
   font-weight: 700;
@@ -207,6 +213,13 @@
   font-size: 1rem;
   color: var(--foreground);
   line-height: 1.4;
+}
+
+.movieDetailActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: auto;
 }
 
 .modalStatus {
