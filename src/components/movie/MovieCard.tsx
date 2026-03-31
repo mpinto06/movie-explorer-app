@@ -10,10 +10,6 @@ interface MovieCardProps {
 
 export const MovieCard: React.FC<MovieCardProps> = ({ movie, onClick }) => {
   const { Title, Year, Type, Poster } = movie;
-  
-  const posterUrl = Poster !== 'N/A' 
-    ? Poster 
-    : 'https://via.placeholder.com/300x450?text=No+Poster';
 
   return (
     <motion.div 
@@ -26,7 +22,11 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie, onClick }) => {
       transition={{ duration: 0.3 }}
     >
       <div className={styles.moviePosterWrapper}>
-        <img src={posterUrl} alt={Title} className={styles.moviePoster} loading="lazy" />
+        {Poster !== 'N/A' ? (
+          <img src={Poster} alt={Title} className={styles.moviePoster} loading="lazy" />
+        ) : (
+          <div className={styles.noPoster}>Sin imagen disponible</div>
+        )}
         <div className={styles.movieTypeBadge}>{Type}</div>
       </div>
       <div className={styles.movieInfo}>

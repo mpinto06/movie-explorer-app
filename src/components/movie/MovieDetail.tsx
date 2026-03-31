@@ -70,11 +70,15 @@ export const MovieDetail: React.FC<MovieDetailProps> = ({ imdbID, onClose }) => 
           ) : movie && (
             <div className={styles.movieDetailContainer}>
               <div className={styles.movieDetailPosterSection}>
-                <img 
-                  src={movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/400x600?text=No+Poster'} 
-                  alt={movie.Title} 
-                  className={styles.movieDetailPoster}
-                />
+                {movie.Poster !== 'N/A' ? (
+                  <img 
+                    src={movie.Poster} 
+                    alt={movie.Title} 
+                    className={styles.movieDetailPoster}
+                  />
+                ) : (
+                  <div className={styles.noPosterDetail}>Imagen no disponible</div>
+                )}
                 <div className={styles.movieDetailRatings}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <Star className={styles.starIcon} size={20} />
