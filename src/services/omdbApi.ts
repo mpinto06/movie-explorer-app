@@ -61,7 +61,7 @@ export const searchMovies = async (
     const data: SearchResponse = await response.json();
     return data;
   } catch (error) {
-    console.error('Error searching movies:', error);
+    console.error('Error al buscar películas:', error);
     return { Response: "False", Error: "Error de red al conectar con OMDb" };
   }
 };
@@ -74,7 +74,7 @@ export const getMovieDetails = async (imdbID: string): Promise<MovieDetails | { 
     const data: MovieDetails = await response.json();
     return data;
   } catch (error) {
-    console.error('Error fetching movie details:', error);
+    console.error('Error al obtener detalles de la película:', error);
     return { Response: "False", Error: "Error de red al conectar con OMDb" };
   }
 };
