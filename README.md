@@ -87,3 +87,4 @@ El proyecto sigue una estructura modular y escalable, separando las responsabili
 ---
 
 Desarrollado para la prueba técnica de **Nextep Innovation**.
+Link de la aplicación: https://movie-test-nextstep.netlify.app/
