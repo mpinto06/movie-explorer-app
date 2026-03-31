@@ -1,6 +1,7 @@
 import React from 'react';
 import { Movie } from '../../services/omdbApi';
 import { motion } from 'framer-motion';
+import styles from './MovieCard.module.css';
 
 interface MovieCardProps {
   movie: Movie;
@@ -16,7 +17,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie, onClick }) => {
 
   return (
     <motion.div 
-      className="movie-card" 
+      className={styles.movieCard} 
       onClick={onClick}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -24,13 +25,13 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie, onClick }) => {
       whileHover={{ y: -8 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="movie-poster-wrapper">
-        <img src={posterUrl} alt={Title} className="movie-poster" loading="lazy" />
-        <div className="movie-type-badge">{Type}</div>
+      <div className={styles.moviePosterWrapper}>
+        <img src={posterUrl} alt={Title} className={styles.moviePoster} loading="lazy" />
+        <div className={styles.movieTypeBadge}>{Type}</div>
       </div>
-      <div className="movie-info">
-        <h3 className="movie-title">{Title}</h3>
-        <span className="movie-year">{Year}</span>
+      <div className={styles.movieInfo}>
+        <h3 className={styles.movieTitle}>{Title}</h3>
+        <span className={styles.movieYear}>{Year}</span>
       </div>
     </motion.div>
   );

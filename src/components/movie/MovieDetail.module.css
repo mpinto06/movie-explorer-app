@@ -1,0 +1,172 @@
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+}
+
+.modalContent {
+  background-color: var(--card);
+  width: 100%;
+  max-width: 1000px;
+  max-height: 90vh;
+  border-radius: calc(var(--radius) * 1.5);
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+  border: 1px solid var(--border);
+}
+
+.modalClose {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 50;
+  background-color: var(--background);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.movieDetailContainer {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+}
+
+@media (max-width: 900px) {
+  .movieDetailContainer {
+    grid-template-columns: 1fr;
+  }
+  
+  .movieDetailPosterSection {
+    height: 400px;
+  }
+}
+
+.movieDetailPosterSection img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.movieDetailInfoSection {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.movieDetailHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.movieDetailTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--foreground);
+  letter-spacing: -0.02em;
+}
+
+.movieDetailMeta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  color: var(--muted-foreground);
+  font-size: 0.9375rem;
+}
+
+.metaBadge {
+  padding: 0.125rem 0.625rem;
+  background-color: var(--muted);
+  border-radius: 6px;
+  color: var(--foreground);
+  font-weight: 600;
+  font-size: 0.8125rem;
+}
+
+.movieDetailRatings {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--accent);
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+}
+
+.ratingValue {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.ratingMax {
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+}
+
+.ratingVotes {
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+  margin-left: 0.25rem;
+}
+
+.movieDetailSection h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--foreground);
+}
+
+.sectionContent {
+  line-height: 1.7;
+  color: var(--muted-foreground);
+  font-size: 1.0625rem;
+}
+
+.movieDetailGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+  margin-top: 1rem;
+}
+
+.detailItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detailLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.detailValue {
+  font-size: 1rem;
+  color: var(--foreground);
+  line-height: 1.4;
+}
+
+.modalStatus {
+  padding: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}

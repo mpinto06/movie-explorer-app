@@ -8,15 +8,15 @@ import { useMovies } from './hooks/useMovies';
 import { Moon, Sun, AlertCircle, Film } from 'lucide-react';
 import { Button } from './components/common/Button';
 import { Skeleton } from './components/common/Skeleton';
-import './App.css';
+import styles from './App.module.css';
 
 const MovieSkeleton = () => (
-  <div className="skeleton-grid">
+  <div className={styles.skeletonGrid}>
     {[...Array(8)].map((_, i) => (
-      <div key={i} className="skeleton-card">
-        <Skeleton className="skeleton-poster" />
-        <Skeleton className="skeleton-title" />
-        <Skeleton className="skeleton-year" />
+      <div key={i} className={styles.skeletonCard}>
+        <Skeleton className={styles.skeletonPoster} />
+        <Skeleton className={styles.skeletonTitle} />
+        <Skeleton className={styles.skeletonYear} />
       </div>
     ))}
   </div>
@@ -60,14 +60,14 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="app-wrapper">
-      <header className="app-header-nav">
-        <div className="container header-content">
-          <div className="logo-section">
-            <Film className="logo-icon" />
+    <div className={styles.appWrapper}>
+      <header className={styles.appHeaderNav}>
+        <div className={`container ${styles.headerContent}`}>
+          <div className={styles.logoSection}>
+            <Film className={styles.logoIcon} />
             <span className="logo-text">MovieExplorer</span>
           </div>
-          <Button variant="ghost" onClick={toggleTheme} className="theme-toggle">
+          <Button variant="ghost" onClick={toggleTheme} className={styles.themeToggle}>
             {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
           </Button>
         </div>
@@ -76,20 +76,20 @@ const App: React.FC = () => {
       <main>
         <Hero onSearch={(query, type) => fetchMovies(query, 1, type)} loading={loading} />
 
-        <div className="container main-content">
+        <div className={`container ${styles.mainContent}`}>
           {error && (
-            <div className="status-container">
-              <AlertCircle size={48} className="error-icon" />
-              <p className="status-text">{error}</p>
-              <p className="sub-status">Intenta buscar algo diferente o verifica tu conexión.</p>
+            <div className={styles.statusContainer}>
+              <AlertCircle size={48} className={styles.errorIcon} />
+              <p className={styles.statusText}>{error}</p>
+              <p className={styles.subStatus}>Intenta buscar algo diferente o verifica tu conexión.</p>
             </div>
           )}
 
           {!loading && !error && movies.length === 0 && (
-            <div className="status-container">
-              <Film size={48} className="empty-icon" />
-              <p className="status-text">Empieza tu búsqueda</p>
-              <p className="sub-status">Encuentra información sobre millones de películas y series.</p>
+            <div className={styles.statusContainer}>
+              <Film size={48} className={styles.emptyIcon} />
+              <p className={styles.statusText}>Empieza tu búsqueda</p>
+              <p className={styles.subStatus}>Encuentra información sobre millones de películas y series.</p>
             </div>
           )}
 

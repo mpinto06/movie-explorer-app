@@ -2,6 +2,7 @@ import React from 'react';
 import { MovieCard } from './MovieCard';
 import { Movie } from '../../services/omdbApi';
 import { motion, AnimatePresence } from 'framer-motion';
+import styles from './MovieGrid.module.css';
 
 interface MovieGridProps {
   movies: Movie[];
@@ -13,7 +14,7 @@ export const MovieGrid: React.FC<MovieGridProps> = ({ movies, onMovieClick }) =>
 
   return (
     <motion.div 
-      className="movie-grid"
+      className={styles.movieGrid}
       layout
     >
       <AnimatePresence>

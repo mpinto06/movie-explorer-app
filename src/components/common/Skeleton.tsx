@@ -1,10 +1,6 @@
 import React from 'react';
-import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+import { clsx } from 'clsx';
+import styles from './Skeleton.module.css';
 
 interface SkeletonProps {
   className?: string;
@@ -13,8 +9,8 @@ interface SkeletonProps {
 export const Skeleton: React.FC<SkeletonProps> = ({ className }) => {
   return (
     <div
-      className={cn(
-        'animate-pulse rounded-md bg-slate-200 dark:bg-slate-800',
+      className={clsx(
+        styles.skeleton,
         className
       )}
     />

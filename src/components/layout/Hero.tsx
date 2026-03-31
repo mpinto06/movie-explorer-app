@@ -3,6 +3,7 @@ import { Search } from 'lucide-react';
 import { Button } from '../common/Button';
 import { Input } from '../common/Input';
 import { MovieType } from '../../services/omdbApi';
+import styles from './Hero.module.css';
 
 interface HeroProps {
   onSearch: (query: string, type: MovieType) => void;
@@ -29,14 +30,14 @@ export const Hero: React.FC<HeroProps> = ({ onSearch, loading }) => {
   };
 
   return (
-    <section className="hero-section">
-      <div className="container hero-content">
-        <h1 className="hero-title">Explora el mundo del cine</h1>
-        <p className="hero-subtitle">Busca tus películas, series y episodios favoritos en un solo lugar.</p>
+    <section className={styles.heroSection}>
+      <div className={`container ${styles.heroContent}`}>
+        <h1 className={styles.heroTitle}>Explora el mundo del cine</h1>
+        <p className={styles.heroSubtitle}>Busca tus películas, series y episodios favoritos en un solo lugar.</p>
         
-        <form onSubmit={handleSubmit} className="search-container-group">
-          <div className="search-inputs-flex">
-            <div className="search-input-wrapper">
+        <form onSubmit={handleSubmit} className={styles.searchContainerGroup}>
+          <div className={styles.searchInputsFlex}>
+            <div className={styles.searchInputWrapper}>
               <Input
                 type="text"
                 placeholder="Ej. Batman, Star Wars..."
@@ -46,15 +47,15 @@ export const Hero: React.FC<HeroProps> = ({ onSearch, loading }) => {
                   if (error) setError('');
                 }}
                 error={error}
-                className="search-input"
+                className={styles.searchInput}
               />
             </div>
             
-            <div className="search-filter-wrapper">
+            <div className={styles.searchFilterWrapper}>
               <select 
                 value={type} 
                 onChange={(e) => setType(e.target.value as MovieType)}
-                className="search-type-select"
+                className={styles.searchTypeSelect}
               >
                 <option value="">Todos</option>
                 <option value="movie">Películas</option>
@@ -64,7 +65,7 @@ export const Hero: React.FC<HeroProps> = ({ onSearch, loading }) => {
             </div>
           </div>
 
-          <Button type="submit" disabled={loading} className="search-button">
+          <Button type="submit" disabled={loading} className={styles.searchButton}>
             {loading ? 'Buscando...' : (
               <>
                 <Search size={18} />

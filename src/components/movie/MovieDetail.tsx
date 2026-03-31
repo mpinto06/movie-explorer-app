@@ -3,6 +3,7 @@ import { X, Star, Calendar, Clock, Film, User, Award, ExternalLink } from 'lucid
 import { getMovieDetails, MovieDetails } from '../../services/omdbApi';
 import { Button } from '../common/Button';
 import { motion, AnimatePresence } from 'framer-motion';
+import styles from './MovieDetail.module.css';
 
 interface MovieDetailProps {
   imdbID: string;
@@ -44,98 +45,98 @@ export const MovieDetail: React.FC<MovieDetailProps> = ({ imdbID, onClose }) => 
 
   return (
     <AnimatePresence>
-      <div className="modal-overlay" onClick={onClose}>
+      <div className={styles.modalOverlay} onClick={onClose}>
         <motion.div 
-          className="modal-content" 
+          className={styles.modalContent} 
           onClick={(e) => e.stopPropagation()}
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
         >
-          <Button variant="ghost" size="icon" className="modal-close" onClick={onClose}>
+          <Button variant="ghost" size="icon" className={styles.modalClose} onClick={onClose}>
             <X size={24} />
           </Button>
 
           {loading ? (
-            <div className="modal-status">
+            <div className={styles.modalStatus}>
               <div className="spinner"></div>
               <p>Cargando detalles...</p>
             </div>
           ) : error ? (
-            <div className="modal-status">
+            <div className={styles.modalStatus}>
               <p className="text-rose-500 font-medium">{error}</p>
               <Button onClick={onClose} variant="outline" className="mt-4">Cerrar</Button>
             </div>
           ) : movie && (
-            <div className="movie-detail-container">
-              <div className="movie-detail-poster-section">
+            <div className={styles.movieDetailContainer}>
+              <div className={styles.movieDetailPosterSection}>
                 <img 
                   src={movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/400x600?text=No+Poster'} 
                   alt={movie.Title} 
-                  className="movie-detail-poster"
+                  className={styles.movieDetailPoster}
                 />
-                <div className="movie-detail-ratings">
-                  <div className="rating-item">
+                <div className={styles.movieDetailRatings}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <Star className="text-amber-400 fill-amber-400" size={20} />
-                    <span className="rating-value">{movie.imdbRating}</span>
-                    <span className="rating-max">/10</span>
+                    <span className={styles.ratingValue}>{movie.imdbRating}</span>
+                    <span className={styles.ratingMax}>/10</span>
                   </div>
-                  <div className="rating-votes">{movie.imdbVotes} votos</div>
+                  <div className={styles.ratingVotes}>{movie.imdbVotes} votos</div>
                 </div>
               </div>
 
-              <div className="movie-detail-info-section">
-                <div className="movie-detail-header">
-                  <h2 className="movie-detail-title">{movie.Title}</h2>
-                  <div className="movie-detail-meta">
-                    <span className="meta-badge">{movie.Type}</span>
-                    <span className="meta-badge">{movie.Rated}</span>
-                    <span className="meta-badge">{movie.Runtime}</span>
+              <div className={styles.movieDetailInfoSection}>
+                <div className={styles.movieDetailHeader}>
+                  <h2 className={styles.movieDetailTitle}>{movie.Title}</h2>
+                  <div className={styles.movieDetailMeta}>
+                    <span className={styles.metaBadge}>{movie.Type}</span>
+                    <span className={styles.metaBadge}>{movie.Rated}</span>
+                    <span className={styles.metaBadge}>{movie.Runtime}</span>
                   </div>
                 </div>
 
-                <div className="movie-detail-grid">
-                  <div className="detail-item">
-                    <Calendar className="detail-icon" size={18} />
-                    <div>
-                      <span className="detail-label">Lanzamiento</span>
-                      <p className="detail-value">{movie.Released}</p>
+                <div className={styles.movieDetailGrid}>
+                  <div className={styles.detailItem}>
+                    <div className={styles.detailLabel}>
+                      <Calendar size={18} />
+                      <span>Lanzamiento</span>
                     </div>
+                    <p className={styles.detailValue}>{movie.Released}</p>
                   </div>
-                  <div className="detail-item">
-                    <Film className="detail-icon" size={18} />
-                    <div>
-                      <span className="detail-label">Género</span>
-                      <p className="detail-value">{movie.Genre}</p>
+                  <div className={styles.detailItem}>
+                    <div className={styles.detailLabel}>
+                      <Film size={18} />
+                      <span>Género</span>
                     </div>
+                    <p className={styles.detailValue}>{movie.Genre}</p>
                   </div>
-                  <div className="detail-item">
-                    <User className="detail-icon" size={18} />
-                    <div>
-                      <span className="detail-label">Director</span>
-                      <p className="detail-value">{movie.Director}</p>
+                  <div className={styles.detailItem}>
+                    <div className={styles.detailLabel}>
+                      <User size={18} />
+                      <span>Director</span>
                     </div>
+                    <p className={styles.detailValue}>{movie.Director}</p>
                   </div>
-                  <div className="detail-item">
-                    <Award className="detail-icon" size={18} />
-                    <div>
-                      <span className="detail-label">Premios</span>
-                      <p className="detail-value line-clamp-2">{movie.Awards}</p>
+                  <div className={styles.detailItem}>
+                    <div className={styles.detailLabel}>
+                      <Award size={18} />
+                      <span>Premios</span>
                     </div>
+                    <p className={styles.detailValue}>{movie.Awards}</p>
                   </div>
                 </div>
 
-                <div className="movie-detail-section">
-                  <h3 className="section-title">Sinopsis</h3>
-                  <p className="section-content">{movie.Plot}</p>
+                <div className={styles.movieDetailSection}>
+                  <h3>Sinopsis</h3>
+                  <p className={styles.sectionContent}>{movie.Plot}</p>
                 </div>
 
-                <div className="movie-detail-section">
-                  <h3 className="section-title">Reparto</h3>
-                  <p className="section-content">{movie.Actors}</p>
+                <div className={styles.movieDetailSection}>
+                  <h3>Reparto</h3>
+                  <p className={styles.sectionContent}>{movie.Actors}</p>
                 </div>
 
-                <div className="movie-detail-actions">
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginTop: 'auto' }}>
                   <Button className="w-full sm:w-auto" onClick={() => window.open(`https://www.imdb.com/title/${movie.imdbID}`, '_blank')}>
                     <ExternalLink size={18} className="mr-2" />
                     Ver en IMDb

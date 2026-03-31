@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '../common/Button';
+import styles from './Pagination.module.css';
 
 interface PaginationProps {
   currentPage: number;
@@ -45,7 +46,7 @@ export const Pagination: React.FC<PaginationProps> = ({
   };
 
   return (
-    <div className="pagination-container">
+    <div className={styles.paginationContainer}>
       <Button
         variant="outline"
         size="icon"
@@ -55,7 +56,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         <ChevronLeft size={20} />
       </Button>
 
-      <div className="pagination-pages">
+      <div className={styles.paginationPages}>
         {renderPageNumbers()}
       </div>
 
@@ -68,8 +69,8 @@ export const Pagination: React.FC<PaginationProps> = ({
         <ChevronRight size={20} />
       </Button>
       
-      <p className="pagination-info text-slate-500 dark:text-slate-400">
-        Página {currentPage} de {totalPages} ({totalResults} resultados)
+      <p className={styles.paginationInfo}>
+        Página <span>{currentPage}</span> de <span>{totalPages}</span> ({totalResults} resultados)
       </p>
     </div>
   );
