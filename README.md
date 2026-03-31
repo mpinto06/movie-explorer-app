@@ -72,7 +72,7 @@ El proyecto sigue una estructura modular y escalable, separando las responsabili
 
 ---
 
-## 🛠️ Funcionalidades implementadas
+## Funcionalidades implementadas
 
 -   [x] Buscador de películas con validación (mínimo contenido, máximo 50 caracteres).
 -   [x] Visualización de resultados en grid responsive.
