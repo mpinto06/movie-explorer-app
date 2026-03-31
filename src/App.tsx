@@ -31,8 +31,7 @@ const App: React.FC = () => {
     totalResults, 
     currentPage, 
     fetchMovies, 
-    changePage,
-    lastQuery
+    changePage
   } = useMovies();
 
   const { favorites } = useFavorites();
