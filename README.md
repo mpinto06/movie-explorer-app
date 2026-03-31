@@ -74,15 +74,15 @@ El proyecto sigue una estructura modular y escalable, separando las responsabili
 
 ## Funcionalidades implementadas
 
--   [x] Buscador de películas con validación (mínimo contenido, máximo 50 caracteres).
--   [x] Visualización de resultados en grid responsive.
--   [x] Paginación de resultados.
--   [x] Detalle de película en modal con información extendida.
--   [x] Gestión de Favoritos (añadir, ver y eliminar).
--   [x] Modo Oscuro / Claro.
--   [x] Skeleton Loading para estados de carga.
--   [x] Manejo de errores amigable y estados vacíos.
--   [x] Validaciones de posters inexistentes.
+- Buscador de películas con validación (mínimo contenido, máximo 50 caracteres).
+- Visualización de resultados en grid responsive.
+- Paginación de resultados.
+- Detalle de película en modal con información extendida.
+- Gestión de Favoritos (añadir, ver y eliminar).
+- Modo Oscuro / Claro.
+- Skeleton Loading para estados de carga.
+- Manejo de errores amigable y estados vacíos.
+- Validaciones de posters inexistentes.
 
 ---
 
