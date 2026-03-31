@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { X, Star, Calendar, Clock, Film, User, Award, ExternalLink } from 'lucide-react';
-import { getMovieDetails, MovieDetails } from '../../services/omdbApi';
+import { X, Star, Calendar, Film, User, Award, ExternalLink, Heart } from 'lucide-react';
+import { getMovieDetails, MovieDetails, Movie } from '../../services/omdbApi';
 import { Button } from '../common/Button';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useFavorites } from '../../context/FavoritesContext';
 import styles from './MovieDetail.module.css';
 
 interface MovieDetailProps {
@@ -14,6 +15,26 @@ export const MovieDetail: React.FC<MovieDetailProps> = ({ imdbID, onClose }) => 
   const [movie, setMovie] = useState<MovieDetails | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const { isFavorite, addFavorite, removeFavorite } = useFavorites();
+
+  const favorite = isFavorite(imdbID);
+
+  const toggleFavorite = () => {
+    if (!movie) return;
+    if (favorite) {
+      removeFavorite(imdbID);
+    } else {
+      // Map MovieDetails to Movie
+      const movieToSave: Movie = {
+        Title: movie.Title,
+        Year: movie.Year,
+        imdbID: movie.imdbID,
+        Type: movie.Type,
+        Poster: movie.Poster
+      };
+      addFavorite(movieToSave);
+    }
+  };
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -91,7 +112,16 @@ export const MovieDetail: React.FC<MovieDetailProps> = ({ imdbID, onClose }) => 
 
               <div className={styles.movieDetailInfoSection}>
                 <div className={styles.movieDetailHeader}>
-                  <h2 className={styles.movieDetailTitle}>{movie.Title}</h2>
+                  <div className={styles.titleWrapper}>
+                    <h2 className={styles.movieDetailTitle}>{movie.Title}</h2>
+                    <button 
+                      className={`${styles.favoriteButton} ${favorite ? styles.isFavorite : ''}`}
+                      onClick={toggleFavorite}
+                      aria-label={favorite ? "Eliminar de favoritos" : "Añadir a favoritos"}
+                    >
+                      <Heart size={24} fill={favorite ? "currentColor" : "none"} />
+                    </button>
+                  </div>
                   <div className={styles.movieDetailMeta}>
                     <span className={styles.metaBadge}>{movie.Type}</span>
                     <span className={styles.metaBadge}>{movie.Rated}</span>

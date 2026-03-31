@@ -88,6 +88,38 @@
   letter-spacing: -0.02em;
 }
 
+.titleWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.favoriteButton {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.favoriteButton:hover {
+  background-color: var(--accent);
+  color: #ef4444;
+}
+
+.isFavorite {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
 .movieDetailMeta {
   display: flex;
   align-items: center;

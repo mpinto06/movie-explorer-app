@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
-import { Search } from 'lucide-react';
+import { Search, Heart } from 'lucide-react';
 import { Button } from '../common/Button';
 import { Input } from '../common/Input';
 import { MovieType } from '../../services/omdbApi';
+import { useFavorites } from '../../context/FavoritesContext';
 import styles from './Hero.module.css';
 
 interface HeroProps {
   onSearch: (query: string, type: MovieType) => void;
+  onShowFavorites: () => void;
   loading: boolean;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onSearch, loading }) => {
+export const Hero: React.FC<HeroProps> = ({ onSearch, onShowFavorites, loading }) => {
   const [query, setQuery] = useState('');
   const [type, setType] = useState<MovieType>('');
   const [error, setError] = useState('');
+  const { favorites } = useFavorites();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,14 +68,26 @@ export const Hero: React.FC<HeroProps> = ({ onSearch, loading }) => {
             </div>
           </div>
 
-          <Button type="submit" disabled={loading} className={styles.searchButton}>
-            {loading ? 'Buscando...' : (
-              <>
-                <Search size={18} />
-                <span>Buscar</span>
-              </>
-            )}
-          </Button>
+          <div className={styles.searchActions}>
+            <Button type="submit" disabled={loading} className={styles.searchButton}>
+              {loading ? 'Buscando...' : (
+                <>
+                  <Search size={18} />
+                  <span>Buscar</span>
+                </>
+              )}
+            </Button>
+            
+            <Button 
+              type="button" 
+              variant="outline" 
+              onClick={onShowFavorites} 
+              className={styles.favoriteButton}
+            >
+              <Heart size={18} fill={favorites.length > 0 ? "currentColor" : "none"} />
+              <span>Favoritos ({favorites.length})</span>
+            </Button>
+          </div>
         </form>
       </div>
     </section>
