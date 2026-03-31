@@ -64,7 +64,7 @@ export const MovieDetail: React.FC<MovieDetailProps> = ({ imdbID, onClose }) => 
             </div>
           ) : error ? (
             <div className={styles.modalStatus}>
-              <p className="text-rose-500 font-medium">{error}</p>
+              <p className={styles.errorText}>{error}</p>
               <Button onClick={onClose} variant="outline" className="mt-4">Cerrar</Button>
             </div>
           ) : movie && (
@@ -77,7 +77,7 @@ export const MovieDetail: React.FC<MovieDetailProps> = ({ imdbID, onClose }) => 
                 />
                 <div className={styles.movieDetailRatings}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Star className="text-amber-400 fill-amber-400" size={20} />
+                    <Star className={styles.starIcon} size={20} />
                     <span className={styles.ratingValue}>{movie.imdbRating}</span>
                     <span className={styles.ratingMax}>/10</span>
                   </div>
@@ -137,7 +137,7 @@ export const MovieDetail: React.FC<MovieDetailProps> = ({ imdbID, onClose }) => 
                 </div>
 
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginTop: 'auto' }}>
-                  <Button className="w-full sm:w-auto" onClick={() => window.open(`https://www.imdb.com/title/${movie.imdbID}`, '_blank')}>
+                  <Button className={styles.imdbButton} onClick={() => window.open(`https://www.imdb.com/title/${movie.imdbID}`, '_blank')}>
                     <ExternalLink size={18} className="mr-2" />
                     Ver en IMDb
                   </Button>

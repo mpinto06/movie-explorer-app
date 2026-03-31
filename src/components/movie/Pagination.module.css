@@ -11,6 +11,12 @@
   gap: 0.5rem;
 }
 
+.pageButton {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0 !important;
+}
+
 .paginationInfo {
   font-size: 0.875rem;
   color: var(--muted-foreground);

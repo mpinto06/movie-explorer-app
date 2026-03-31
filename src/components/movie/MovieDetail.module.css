@@ -170,3 +170,23 @@
   align-items: center;
   gap: 1.5rem;
 }
+
+.errorText {
+  color: var(--destructive);
+  font-weight: 500;
+}
+
+.starIcon {
+  color: #fbbf24;
+  fill: #fbbf24;
+}
+
+.imdbButton {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .imdbButton {
+    width: auto;
+  }
+}
