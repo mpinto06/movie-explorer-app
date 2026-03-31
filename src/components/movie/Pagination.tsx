@@ -47,27 +47,29 @@ export const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <div className={styles.paginationContainer}>
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-      >
-        <ChevronLeft size={20} />
-      </Button>
+      <div className={styles.paginationControls}>
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={() => onPageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          <ChevronLeft size={20} />
+        </Button>
 
-      <div className={styles.paginationPages}>
-        {renderPageNumbers()}
+        <div className={styles.paginationPages}>
+          {renderPageNumbers()}
+        </div>
+
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={() => onPageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          <ChevronRight size={20} />
+        </Button>
       </div>
-
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-      >
-        <ChevronRight size={20} />
-      </Button>
       
       <p className={styles.paginationInfo}>
         Página <span>{currentPage}</span> de <span>{totalPages}</span> ({totalResults} resultados)
