@@ -76,7 +76,7 @@ const App: React.FC = () => {
     <div className={styles.appWrapper}>
       <header className={styles.appHeaderNav}>
         <div className={`container ${styles.headerContent}`}>
-          <div className={styles.logoSection} onClick={() => setViewMode('search')} style={{ cursor: 'pointer' }}>
+          <div className={styles.logoSection} onClick={() => setViewMode('search')}>
             <Film className={styles.logoIcon} />
             <span className={styles.logoText}>MovieExplorer</span>
           </div>
@@ -95,9 +95,9 @@ const App: React.FC = () => {
 
         <div className={`container ${styles.mainContent}`}>
           {viewMode === 'favorites' && (
-            <div style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <div className={styles.favoritesHeader}>
               <Heart fill="currentColor" className="text-rose-500" size={24} />
-              <h2 style={{ fontSize: '1.875rem', fontWeight: 700 }}>Mis Favoritos</h2>
+              <h2 className={styles.favoritesTitle}>Mis Favoritos</h2>
             </div>
           )}
 
