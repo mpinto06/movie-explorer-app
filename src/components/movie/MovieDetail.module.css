@@ -74,6 +74,22 @@
   gap: 2rem;
 }
 
+@media (max-width: 640px) {
+  .movieDetailInfoSection {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .movieDetailTitle {
+    font-size: 1.75rem;
+  }
+
+  .movieDetailGrid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
 .movieDetailHeader {
   display: flex;
   flex-direction: column;
@@ -146,6 +162,7 @@
   width: fit-content;
   padding: 0.5rem 1rem;
   border-radius: 100px;
+  margin-top: 0.5rem;
 }
 
 .ratingHeader {

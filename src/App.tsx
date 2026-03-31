@@ -63,9 +63,9 @@ const App: React.FC = () => {
     setSelectedMovieId(null);
   };
 
-  const handleSearch = (query: string, type: any) => {
+  const handleSearch = (query: string, type: any, year: string) => {
     setViewMode('search');
-    fetchMovies(query, 1, type);
+    fetchMovies(query, 1, type, year);
   };
 
   const handleShowFavorites = () => {

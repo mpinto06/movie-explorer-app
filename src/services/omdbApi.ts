@@ -43,7 +43,8 @@ export type MovieType = 'movie' | 'series' | 'episode' | '';
 export const searchMovies = async (
   title: string, 
   page: number = 1, 
-  type: MovieType = ''
+  type: MovieType = '',
+  year: string = ''
 ): Promise<SearchResponse> => {
   if (!title) return { Search: [], totalResults: "0", Response: "False" };
   
@@ -51,6 +52,9 @@ export const searchMovies = async (
     let url = `${BASE_URL}?apikey=${API_KEY}&s=${title}&page=${page}`;
     if (type) {
       url += `&type=${type}`;
+    }
+    if (year) {
+      url += `&y=${year}`;
     }
     
     const response = await fetch(url);

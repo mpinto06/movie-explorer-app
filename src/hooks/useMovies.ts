@@ -9,15 +9,21 @@ export const useMovies = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [lastQuery, setLastQuery] = useState<string>('');
   const [type, setType] = useState<MovieType>('');
+  const [year, setYear] = useState<string>('');
 
-  const fetchMovies = useCallback(async (query: string, page: number = 1, movieType: MovieType = type) => {
+  const fetchMovies = useCallback(async (
+    query: string, 
+    page: number = 1, 
+    movieType: MovieType = type,
+    movieYear: string = year
+  ) => {
     if (!query || query.trim().length === 0) return;
     
     setLoading(true);
     setError(null);
     
     try {
-      const data = await searchMovies(query, page, movieType);
+      const data = await searchMovies(query, page, movieType, movieYear);
       
       if (data.Response === 'True') {
         setMovies(data.Search || []);
@@ -25,6 +31,7 @@ export const useMovies = () => {
         setCurrentPage(page);
         setLastQuery(query);
         setType(movieType);
+        setYear(movieYear);
       } else {
         setMovies([]);
         setTotalResults(0);
@@ -35,14 +42,18 @@ export const useMovies = () => {
     } finally {
       setLoading(false);
     }
-  }, [type]);
+  }, [type, year]);
 
   const changePage = (newPage: number) => {
-    fetchMovies(lastQuery, newPage, type);
+    fetchMovies(lastQuery, newPage, type, year);
   };
 
   const changeType = (newType: MovieType) => {
-    fetchMovies(lastQuery, 1, newType);
+    fetchMovies(lastQuery, 1, newType, year);
+  };
+
+  const changeYear = (newYear: string) => {
+    fetchMovies(lastQuery, 1, type, newYear);
   };
 
   return { 
@@ -52,9 +63,11 @@ export const useMovies = () => {
     totalResults, 
     currentPage, 
     type,
+    year,
     fetchMovies, 
     changePage,
     changeType,
+    changeYear,
     lastQuery
   };
 };

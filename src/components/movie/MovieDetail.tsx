@@ -15,6 +15,7 @@ export const MovieDetail: React.FC<MovieDetailProps> = ({ imdbID, onClose }) => 
   const [movie, setMovie] = useState<MovieDetails | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [imageError, setImageError] = useState(false);
   const { isFavorite, addFavorite, removeFavorite } = useFavorites();
 
   const favorite = isFavorite(imdbID);
@@ -24,7 +25,6 @@ export const MovieDetail: React.FC<MovieDetailProps> = ({ imdbID, onClose }) => 
     if (favorite) {
       removeFavorite(imdbID);
     } else {
-      // Map MovieDetails to Movie
       const movieToSave: Movie = {
         Title: movie.Title,
         Year: movie.Year,
@@ -40,6 +40,7 @@ export const MovieDetail: React.FC<MovieDetailProps> = ({ imdbID, onClose }) => 
     const fetchDetails = async () => {
       setLoading(true);
       setError(null);
+      setImageError(false);
       try {
         const data = await getMovieDetails(imdbID);
         if ('Response' in data && data.Response === 'True') {
@@ -91,23 +92,16 @@ export const MovieDetail: React.FC<MovieDetailProps> = ({ imdbID, onClose }) => 
           ) : movie && (
             <div className={styles.movieDetailContainer}>
               <div className={styles.movieDetailPosterSection}>
-                {movie.Poster !== 'N/A' ? (
+                {movie.Poster !== 'N/A' && !imageError ? (
                   <img 
                     src={movie.Poster} 
                     alt={movie.Title} 
                     className={styles.movieDetailPoster}
+                    onError={() => setImageError(true)}
                   />
                 ) : (
-                  <div className={styles.noPosterDetail}>Imagen no disponible</div>
+                  <div className={styles.noPosterDetail}>Sin imagen disponible</div>
                 )}
-                <div className={styles.movieDetailRatings}>
-                  <div className={styles.ratingHeader}>
-                    <Star className={styles.starIcon} size={20} />
-                    <span className={styles.ratingValue}>{movie.imdbRating}</span>
-                    <span className={styles.ratingMax}>/10</span>
-                  </div>
-                  <div className={styles.ratingVotes}>{movie.imdbVotes} votos</div>
-                </div>
               </div>
 
               <div className={styles.movieDetailInfoSection}>
@@ -126,6 +120,15 @@ export const MovieDetail: React.FC<MovieDetailProps> = ({ imdbID, onClose }) => 
                     <span className={styles.metaBadge}>{movie.Type}</span>
                     <span className={styles.metaBadge}>{movie.Rated}</span>
                     <span className={styles.metaBadge}>{movie.Runtime}</span>
+                  </div>
+                  
+                  <div className={styles.movieDetailRatings}>
+                    <div className={styles.ratingHeader}>
+                      <Star className={styles.starIcon} size={20} />
+                      <span className={styles.ratingValue}>{movie.imdbRating}</span>
+                      <span className={styles.ratingMax}>/10</span>
+                    </div>
+                    <div className={styles.ratingVotes}>{movie.imdbVotes} votos</div>
                   </div>
                 </div>
 
